@@ -2,7 +2,7 @@
 
 This is really simple information, but should also be a good intro into what to use and what Javascript can access based on its placement on the page.
 
-# <script> in head or body?
+# \<script\> in head or body?
 
 The script should be placed in different parts of the HTML depending on the need. If it's in the head, it runs on load. If you're going to work with the document, put it in the body, right before the closing tag.
 
