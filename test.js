@@ -1,6 +1,6 @@
 var text = document.getElementsByTagName('p')[0].innerText
 
-console.log(text)
+// console.log(text)
 
 var eachChar = text.split('')
 var spannedText = '';
