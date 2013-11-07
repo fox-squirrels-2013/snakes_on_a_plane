@@ -14,42 +14,15 @@ function inputBox() {
 
   // Create spanned version of dummy text. (with span tags)
   for(var index =0; index < eachWord.length; index++) {
-    spannedText += "<span onclick='changeColor(" + index + ")'>" + eachWord[index] + "</span>";
+    spannedText += "<span onclick='changeColor(" + index + ")'>" + eachWord[index] + "</span> ";
   }
 
 
   // Replace original dummy text on document with spanned version.
-  document.getElementById('dummy_text')[0].innerHTML = spannedText;
+  document.getElementById('dummy_text').innerHTML = spannedText;
 
   function changeColor(i) {
     document.getElementsByTagName('span')[i].className = 'correct';
   }
-
-  // var truthindexness = true;
-
-  // var i = 0;
-  // var x = 0;
-
-
-  // while (x <= userInput.length){
-  //   if (testText[i] === userInput[i]){
-  //     truthiness = true;
-  //     i += 1;
-  //     x = i;
-  //   }
-  //   else {
-  //     userInput.splice(i, 1);
-  //     truthiness = false;
-  //     i += 1;
-  //   }
-  //   if (userInput.length > testText.length) {
-  //     truthiness = false;
-  //   }
-  // }
-
-
-
-
-  // document.getElementsByName('user_output')[0].value = truthiness;
 
 }
