@@ -1,4 +1,4 @@
-function inputBox(event) {
+function inputBox() {
   SPACEBAR_KEYCODE = 32;
   var pageText = document.getElementById("dummy_text").innerHTML;
   var numWordsText = trackNumWords(pageText);
@@ -26,3 +26,14 @@ function compareText(input, splitText, numWordsInput) {
     return wholeWordsTyped === correspondingPageText;
   }
 }
+
+// function compareWords(array1, array2) {
+//   var nowArray1 = array1;
+//   var nowArray2 = array2;
+
+//   for (var i = 0; i < nowArray1.length; i++){
+//     for (var y = 0; y < nowArray2.length; y++)  
+// }
+
+
+//need a loop to go through each array, at different speeds
