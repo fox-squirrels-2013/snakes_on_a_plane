@@ -1,3 +1,23 @@
+theWindow = window
+
+function countdown(time_in_seconds) {
+  var displayTimer = document.querySelector('#displayTimer')
+  this.addEventListener('keydown', function() {
+    if (displayTimer.innerText === '') {
+      var totalSeconds = time_in_seconds
+
+      timer = function() {
+        if (totalSeconds >= 0) {
+          displayTimer.innerText = totalSeconds
+          totalSeconds--
+        }
+        setTimeout('timer()', 1000)
+      }
+      timer()
+    }
+  }, false)
+}
+
 function inputBox(event) {
   SPACEBAR_KEYCODE = 32;
   var pageText = document.getElementById("dummy_text").innerHTML;
@@ -26,3 +46,5 @@ function compareText(input, splitText, numWordsInput) {
     return wholeWordsTyped === correspondingPageText;
   }
 }
+
+theWindow.countdown(60)
