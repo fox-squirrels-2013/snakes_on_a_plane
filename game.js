@@ -14,7 +14,7 @@ function inputBox() {
 }
 
 function checkErrors(pageText) {
-  pageText = pageText.splice(0, userText.length);
+  var pageText = pageText.splice(0, userText.length);
   console.log(pageText)
   var errors = 0;
   var pindex = 0;
@@ -31,13 +31,34 @@ function checkErrors(pageText) {
       pindex += 1;
     }
   }
-
-  // pindex = 0;
-  // uindex = 0;
-
   //console.log(userText);
   document.getElementsByName("error_output")[0].value = errors;
+  return errors;
 }
+
+
+// function getErrorCount(pageText, userText) {
+//   var pageText = pageText.splice(0, userText.length);
+//   console.log(pageText)
+//   var errors = 0;
+//   var pindex = 0;
+//   var inputLength = userText.length;
+//   var uindex = 0;
+
+//   while (pindex <= inputLength){
+//     if (pageText[pindex] === userText[pindex]){
+//       //console.log(pageText[pindex], userText[pindex]);
+//       pindex += 1;
+//     }
+//     else {
+//       errors++;
+//       pindex += 1;
+//     }
+//   }
+//   //console.log(userText);
+//   document.getElementsByName("error_output")[0].value = errors;
+//   return errors;
+// }
 
 function highlightText(text, userText) {
   var eachWord = text.split(' ');
@@ -85,8 +106,22 @@ function countdown(time_in_seconds) {
           totalSeconds--
           setTimeout('timer()', 1000);
         } else {
+           // var pageText2 = document.getElementById("hidden_dummy_text").innerHTML.split(" ");
+           //  var userText2 = document.getElementsByName("user_input")[0].value.split(" ");
+           //  var text2 = document.getElementById("hidden_dummy_text").innerHTML;
+            // var score = ((userText2.length - getErrorCount(pageText2, userText2)) / pageText2)
+          var dummyText = document.getElementById("hidden_dummy_text").innerHTML.split(" ").length;
+          var wordsTyped = document.getElementsByName("user_input")[0].value.split(" ").length - 1;
+          var errors = document.getElementById("error_output").value;
+
+            console.log(dummyText)
+            console.log(wordsTyped)
+            console.log(errors)
+
+            var score = Math.round(((wordsTyped - errors)/dummyText)*100).toString() + "%"
+            console.log("******")
+            console.log(score)
           // note: refactor by making the score a function
-          console.log("Time elapsed")
         }
         
       }
