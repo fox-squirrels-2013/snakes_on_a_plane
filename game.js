@@ -5,7 +5,7 @@ function inputBox() {
   
   if (event.keyCode === 32) {
      checkErrors(pageText);
-    console.log(userText);
+   // console.log(userText);
     highlightText(text,userText);
   } else if (event.keyCode === 8) {
     checkErrors(pageText, userText);
@@ -15,6 +15,7 @@ function inputBox() {
 
 function checkErrors(pageText) {
   pageText = pageText.splice(0, userText.length);
+  console.log(pageText)
   var errors = 0;
   var pindex = 0;
   var inputLength = userText.length;
@@ -22,16 +23,17 @@ function checkErrors(pageText) {
 
   while (pindex <= inputLength){
     if (pageText[pindex] === userText[pindex]){
-      console.log(pageText[pindex], userText[pindex]);
+      //console.log(pageText[pindex], userText[pindex]);
       pindex += 1;
     }
     else {
+      errors++;
       pindex += 1;
     }
   }
 
-  pindex = 0;
-  uindex = 0;
+  // pindex = 0;
+  // uindex = 0;
 
   //console.log(userText);
   document.getElementsByName("error_output")[0].value = errors;
@@ -84,7 +86,7 @@ function countdown(time_in_seconds) {
           setTimeout('timer()', 1000);
         } else {
           // note: refactor by making the score a function
-          alert("Time elapsed")
+          console.log("Time elapsed")
         }
         
       }
