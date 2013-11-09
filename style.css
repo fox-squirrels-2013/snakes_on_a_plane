@@ -1,3 +1,6 @@
 .correct {
   background-color: #7CB02C;
 }
+.incorrect {
+  background-color: red;
+}

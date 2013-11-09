@@ -1,18 +1,33 @@
 <!DOCTYPE html>
 <html>
-<title></title>
-<head>
-<link href="style.css" type="text/css" rel="stylesheet" />
-</head>
-<body>
-<div id="dummy_text">Do you see any Teletubbies in here?</div>
-<div id="hidden_dummy_text" style="display: none;">Do you see any Teletubbies in here?</div>
-<div id="displayTimer"></div>
+  <head>
+    <title></title>
+    <link href="style.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
 
+    <select id="timer_set" onchange="window.countdown(this)">
+      <option>Time</option>
+      <option>60 seconds</option>
+      <options>120 seconds</option>
+      <option> 180 seconds</option>
+    </select>
 
-<input type="text" style="width: 400px;" value="" name="user_input" onkeydown="inputBox()">
-<input type="text" value="" name="error_output">
-<script type="text/javascript" src="./game.js"></script>
+    <select id="select_text" onchange="populateText(this)">
+      <option>Text</option>
+      <option>Teletubbies</option>
+      <option>Show</option>
+    </select>
 
-</body>
+    <div id="dummy_text"></div>
+    <div id="hidden_dummy_text" style="display: none;"></div>
+
+    <input type="text" style="width: 400px;" value="" id="user_input" name="user_input" onkeydown="inputBox()" disabled autofocus>
+    <input type="text" value="" name="error_output" readOnly style="width:15px">
+
+    <div id="displayTimer"></div>
+    <div id="score"></div>
+
+    <script type="text/javascript" src="./game.js"></script>
+  </body>
 </html>
