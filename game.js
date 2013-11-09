@@ -37,29 +37,6 @@ function checkErrors(pageText) {
 }
 
 
-// function getErrorCount(pageText, userText) {
-//   var pageText = pageText.splice(0, userText.length);
-//   console.log(pageText)
-//   var errors = 0;
-//   var pindex = 0;
-//   var inputLength = userText.length;
-//   var uindex = 0;
-
-//   while (pindex <= inputLength){
-//     if (pageText[pindex] === userText[pindex]){
-//       //console.log(pageText[pindex], userText[pindex]);
-//       pindex += 1;
-//     }
-//     else {
-//       errors++;
-//       pindex += 1;
-//     }
-//   }
-//   //console.log(userText);
-//   document.getElementsByName("error_output")[0].value = errors;
-//   return errors;
-// }
-
 function highlightText(text, userText) {
   var eachWord = text.split(' ');
   var spannedText = '';
@@ -90,11 +67,6 @@ function highlightText(text, userText) {
 function countdown(time_in_seconds) {
   var displayTimer = document.querySelector('#displayTimer')
 // refactor: the next 3 lines to score function
-  // var pageText = document.getElementById("hidden_dummy_text").innerHTML.split(" ");
-  // var userText = document.getElementsByName("user_input")[0].value.split(" ");
-  // var text = document.getElementById("hidden_dummy_text").innerHTML;
-  // var errors = checkErrors(pageText);
-  // console.log(errors)
 
   this.addEventListener('keydown', function() {
     if (displayTimer.innerText === '') {
@@ -106,33 +78,27 @@ function countdown(time_in_seconds) {
           totalSeconds--
           setTimeout('timer()', 1000);
         } else {
-           // var pageText2 = document.getElementById("hidden_dummy_text").innerHTML.split(" ");
-           //  var userText2 = document.getElementsByName("user_input")[0].value.split(" ");
-           //  var text2 = document.getElementById("hidden_dummy_text").innerHTML;
-            // var score = ((userText2.length - getErrorCount(pageText2, userText2)) / pageText2)
-          var dummyText = document.getElementById("hidden_dummy_text").innerHTML.split(" ").length;
-          var wordsTyped = document.getElementsByName("user_input")[0].value.split(" ").length - 1;
-          var errors = document.getElementById("error_output").value;
 
-            console.log(dummyText)
-            console.log(wordsTyped)
-            console.log(errors)
-
-            var score = Math.round(((wordsTyped - errors)/dummyText)*100).toString() + "%"
-            console.log("******")
-            console.log(score)
+          getScore();
           // note: refactor by making the score a function
         }
-        
       }
       timer();
     }
   }, false);
 }
 
-// function score() {
-//   var theScore = document.querySelector('#theScore');
-//     theScore.innerText = errors;
+
+function getScore() {
+          var dummyText = document.getElementById("hidden_dummy_text").innerHTML.split(" ").length;
+          var wordsTyped = document.getElementsByName("user_input")[0].value.split(" ").length - 1;
+          var errors = document.getElementById("error_output").value;
+          var score = Math.round(((wordsTyped - errors)/dummyText)*100).toString() + "%"
+            // console.log(score)
+          document.getElementById("score").value = score;
+          // note: refactor by making the score a function
+}
+
 
 window.countdown(5);
 
