@@ -2,13 +2,26 @@ SPACEBAR_KEY_CODE = 32
 BACKSPACE_KEY_CODE = 8
 ENTER_KEY_CODE = 13
 
+function populateText(selectedText) {
+  var teletubbies = "Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that's what you see at a toy store. And you must think you're in a toy store, because you're here shopping for an infant named Jeb."
+  var show = "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't, become nothing. She starred in one of the ones that became nothing."
+  
+  var user_selected = selectedText.options[selectedText.selectedIndex].innerText
+  if (user_selected === 'Teletubbies') {
+    document.getElementById('dummy_text').innerText = teletubbies
+  } else if (user_selected === 'Show') {
+    document.getElementById('dummy_text').innerText = show
+  }
+  document.getElementById('hidden_dummy_text').innerText = document.getElementById('dummy_text').innerText
+}
+
 function inputBox() {
   var pageText = document.getElementById("hidden_dummy_text").innerHTML.split(" ");
   var userText = document.getElementsByName("user_input")[0].value.split(" ");
   var text = document.getElementById("hidden_dummy_text").innerHTML;
   
   if (event.keyCode === SPACEBAR_KEY_CODE || event.keyCode === ENTER_KEY_CODE) {
-     checkErrors(pageText);
+    checkErrors(pageText);
     highlightText(text,userText);
   } else if (event.keyCode === BACKSPACE_KEY_CODE) {
     checkErrors(pageText, userText);
@@ -26,7 +39,6 @@ function checkErrors(pageText) {
 
   while (pindex <= inputLength){
     if (pageText[pindex] === userText[pindex]){
-      console.log(pageText[pindex], userText[pindex]);
       pindex += 1;
     }
     else {
@@ -63,27 +75,28 @@ function highlightText(text, userText) {
   var factor = userText.length;
   // Word count: 7
   while (n < factor){
-    document.getElementsByTagName('span')[n].className = 'correct';
+    if (userText[n] === eachWord[n]) {
+      document.getElementsByTagName('span')[n].className = 'correct'
+    } else {
+      document.getElementsByTagName('span')[n].className = 'incorrect'
+    }
     n++;
   }
 
 }
 
-function countdown(time_in_seconds) {
+function countdown(userTime) {
+  var selectedTime = parseInt(userTime.options[userTime.selectedIndex].innerText)
   var displayTimer = document.querySelector('#displayTimer')
 // refactor: the next 3 lines to score function
   var pageText = document.getElementById("hidden_dummy_text").innerHTML.split(" ");
-  // console.log(pageText)
   var userText = document.getElementsByName("user_input")[0].value.split(" ");
-  // console.log(userText)
   var text = document.getElementById("hidden_dummy_text").innerHTML;
-  // console.log(text)
   var errors = checkErrors(pageText);
-  // console.log(errors)
 
   this.addEventListener('keydown', function() {
     if (displayTimer.innerText === '') {
-      var totalSeconds = time_in_seconds;
+      var totalSeconds = selectedTime;
 
       timer = function() {
         if (totalSeconds >= 0) {
@@ -101,10 +114,3 @@ function countdown(time_in_seconds) {
     }
   }, false);
 }
-
-// function score() {
-//   var theScore = document.querySelector('#theScore');
-//     theScore.innerText = errors;
-
-window.countdown(10);
-
