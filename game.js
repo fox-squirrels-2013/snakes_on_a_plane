@@ -43,17 +43,16 @@ function checkErrors(pageText) {
       pindex += 1;
     }
     else {
+      errors++;
       pindex += 1;
       errors++
     }
   }
 
-  pindex = 0;
-  uindex = 0;
-
-  // console.log(userText);
   document.getElementsByName("error_output")[0].value = errors;
+  return errors;
 }
+
 
 function highlightText(text, userText) {
   var eachWord = text.split(' ');
@@ -90,10 +89,6 @@ function countdown(userTime) {
   var selectedTime = parseInt(userTime.options[userTime.selectedIndex].innerText)
   var displayTimer = document.querySelector('#displayTimer')
 // refactor: the next 3 lines to score function
-  var pageText = document.getElementById("hidden_dummy_text").innerHTML.split(" ");
-  var userText = document.getElementsByName("user_input")[0].value.split(" ");
-  var text = document.getElementById("hidden_dummy_text").innerHTML;
-  var errors = checkErrors(pageText);
 
   this.addEventListener('keydown', function() {
     if (displayTimer.innerText === '') {
@@ -105,13 +100,23 @@ function countdown(userTime) {
           totalSeconds--
           setTimeout('timer()', 1000);
         } else {
+
+          getScore();
           // note: refactor by making the score a function
-          document.getElementById('score').innerText = "Done!"
           document.getElementById('user_input').disabled = true;
         }
-        
       }
       timer();
     }
   }, false);
+}
+
+function getScore() {
+          var dummyText = document.getElementById("hidden_dummy_text").innerHTML.split(" ").length;
+          var wordsTyped = document.getElementsByName("user_input")[0].value.split(" ").length - 1;
+          var errors = document.getElementById("error_output").value;
+          var score = Math.round(((wordsTyped - errors)/dummyText)*100).toString() + "%"
+            // console.log(score)
+          document.getElementById("score").value = score;
+          // note: refactor by making the score a function
 }

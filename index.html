@@ -18,12 +18,15 @@
       <option>Teletubbies</option>
       <option>Show</option>
     </select>
+    <br />
+    <input type="text" name="score" id="score" readOnly>
+
 
     <div id="dummy_text"></div>
     <div id="hidden_dummy_text" style="display: none;"></div>
 
-    <input type="text" style="width: 400px;" value="" id="user_input" name="user_input" onkeydown="inputBox()" disabled autofocus>
-    <input type="text" value="" name="error_output" readOnly style="width:15px">
+    <input type="text" style="width: 400px;" value="" id="user_input" name="user_input" onkeydown="inputBox()" disabled>
+    <input type="text" value="" id="error_output" name="error_output" readOnly style="width:15px">
 
     <div id="displayTimer"></div>
     <div id="score"></div>
