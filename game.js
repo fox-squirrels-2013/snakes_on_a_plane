@@ -13,6 +13,7 @@ function populateText(selectedText) {
     document.getElementById('dummy_text').innerText = show
   }
   document.getElementById('hidden_dummy_text').innerText = document.getElementById('dummy_text').innerText
+  document.getElementById('user_input').disabled = false
 }
 
 function inputBox() {
