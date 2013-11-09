@@ -1,20 +1,24 @@
+SPACEBAR_KEY_CODE = 32
+BACKSPACE_KEY_CODE = 8
+ENTER_KEY_CODE = 13
+
 function inputBox() {
   var pageText = document.getElementById("hidden_dummy_text").innerHTML.split(" ");
-  userText = document.getElementsByName("user_input")[0].value.split(" ");
+  var userText = document.getElementsByName("user_input")[0].value.split(" ");
   var text = document.getElementById("hidden_dummy_text").innerHTML;
   
-  if (event.keyCode === 32) {
+  if (event.keyCode === SPACEBAR_KEY_CODE || event.keyCode === ENTER_KEY_CODE) {
      checkErrors(pageText);
-    console.log(userText);
     highlightText(text,userText);
-  } else if (event.keyCode === 8) {
+  } else if (event.keyCode === BACKSPACE_KEY_CODE) {
     checkErrors(pageText, userText);
     highlightText(text,userText);
   }
 }
 
 function checkErrors(pageText) {
-  pageText = pageText.splice(0, userText.length);
+  var userText = document.getElementsByName("user_input")[0].value.split(" ");
+  var pageText = pageText.splice(0, userText.length);
   var errors = 0;
   var pindex = 0;
   var inputLength = userText.length;
@@ -27,13 +31,14 @@ function checkErrors(pageText) {
     }
     else {
       pindex += 1;
+      errors++
     }
   }
 
   pindex = 0;
   uindex = 0;
 
-  //console.log(userText);
+  // console.log(userText);
   document.getElementsByName("error_output")[0].value = errors;
 }
 
@@ -67,10 +72,13 @@ function highlightText(text, userText) {
 function countdown(time_in_seconds) {
   var displayTimer = document.querySelector('#displayTimer')
 // refactor: the next 3 lines to score function
-  // var pageText = document.getElementById("hidden_dummy_text").innerHTML.split(" ");
-  // var userText = document.getElementsByName("user_input")[0].value.split(" ");
-  // var text = document.getElementById("hidden_dummy_text").innerHTML;
-  // var errors = checkErrors(pageText);
+  var pageText = document.getElementById("hidden_dummy_text").innerHTML.split(" ");
+  // console.log(pageText)
+  var userText = document.getElementsByName("user_input")[0].value.split(" ");
+  // console.log(userText)
+  var text = document.getElementById("hidden_dummy_text").innerHTML;
+  // console.log(text)
+  var errors = checkErrors(pageText);
   // console.log(errors)
 
   this.addEventListener('keydown', function() {
@@ -84,7 +92,8 @@ function countdown(time_in_seconds) {
           setTimeout('timer()', 1000);
         } else {
           // note: refactor by making the score a function
-          alert("Time elapsed")
+          document.getElementById('score').innerText = "Done!"
+          document.getElementById('user_input').disabled = true;
         }
         
       }
@@ -97,5 +106,5 @@ function countdown(time_in_seconds) {
 //   var theScore = document.querySelector('#theScore');
 //     theScore.innerText = errors;
 
-window.countdown(5);
+window.countdown(10);
 
